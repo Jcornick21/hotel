@@ -13,6 +13,9 @@ module Hotel
   end
 end
 
+
+
+
 #     def all_rooms
 #
 #       rooms = []

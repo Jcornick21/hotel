@@ -29,6 +29,8 @@ describe 'Administrator class' do
 
   it "reservation_list contains instances of reservation" do
     admin = Hotel::Administrator.new
+    # need to call new reservation method on this for it to work
+    #
 
     admin.reservation_list.sample.must_be_instance_of Hotel::Reservation
 
