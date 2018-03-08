@@ -1,4 +1,5 @@
 require_relative 'hotel_room'
+require 'date'
 # require_relative 'administrator'
 module Hotel
   class Reservation
@@ -6,9 +7,9 @@ module Hotel
     attr_accessor :start_date, :end_date
 
     def initialize(guest:, start_date:, end_date:)
-      @guest = :guest
-      @start_date = Date.parse(:start_date)
-      @end_date = Date.parse(:end_date)
+      @guest = guest
+      @start_date = Date.parse(start_date)
+      @end_date = Date.parse(end_date)
       # code from date class to validate dates should go here?
       # this code bit can be moved into a date class maybe?
       if @end_date < @start_date

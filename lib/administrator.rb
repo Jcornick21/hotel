@@ -10,21 +10,21 @@ module Hotel
       @room_list = all_rooms
       @reservation_list = []
 
-      if reservation_list = []
+      if reservation_list == []
         puts "All rooms are available for reservation."
       end
     end
     # must access list of rooms
     # must access list of reservations
     # can create reservation
-    
+
 
     def new_reservation
     this method should add the newly created reservation to reservation_list
     new_reservation = Hotel::Reservation.new
-
+    @reservation_list << new_reservation
     end
-    can see total cost of a reservation
+    # can see total cost of a reservation
 
     def all_rooms
       rooms = []
