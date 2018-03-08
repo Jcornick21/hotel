@@ -19,9 +19,9 @@ module Hotel
     # can create reservation
 
 
-    def new_reservation
-    this method should add the newly created reservation to reservation_list
-    new_reservation = Hotel::Reservation.new
+    def new_reservation(name, start_res, end_res)
+    # this method should add the newly created reservation to reservation_list
+    new_reservation = Hotel::Reservation.new(guest: name, start_date: start_res, end_date: end_res)
     @reservation_list << new_reservation
     end
     # can see total cost of a reservation
