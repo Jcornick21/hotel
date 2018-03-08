@@ -12,12 +12,12 @@ module Hotel
       @end_date = Date.parse(end_date)
       # code from date class to validate dates should go here?
       # this code bit can be moved into a date class maybe?
-      if @end_date < @start_date
-        raise StandardError.new('Invalid reservation dates!')
-      end
       # generate a random room num based on whats available for the timeframe
       @room = open_rooms(1)
       @total_cost = stay_price
+      if @end_date < @start_date
+        raise StandardError.new('Invalid reservation dates!')
+      end
     end
 
     def stay_price

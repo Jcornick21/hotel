@@ -28,10 +28,28 @@ describe 'Administrator class' do
   end
 
   it "reservation_list contains instances of reservation" do
+    # this also checks the new_reservation method because if it didnt work
+    #  the reservation list would be empty.
     admin = Hotel::Administrator.new
     admin.new_reservation( 'Mikaila', '12th December 2018','18th December 2018')
 
     admin.reservation_list.sample.must_be_instance_of Hotel::Reservation
 
   end
+
+  it "can get total_cost" do
+    admin = Hotel::Administrator.new
+    admin.new_reservation( 'Mikaila', '12th December 2018','18th December 2018')
+
+    name = 'Mikaila'
+    name_1 = 'Mikah'
+
+    admin.reservation_cost(name).must_equal 1000
+    admin.reservation_cost(name_1).must_equal ' Sorry! We do not have your reservation on file. Please contact customer service.'
+
+  end
+
+  # it "text" do
+  #
+  # end
 end

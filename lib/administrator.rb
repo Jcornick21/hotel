@@ -14,17 +14,29 @@ module Hotel
         puts "All rooms are available for reservation."
       end
     end
-    # must access list of rooms
-    # must access list of reservations
+
     # can create reservation
-
-
     def new_reservation(name, start_res, end_res)
-    # this method should add the newly created reservation to reservation_list
-    new_reservation = Hotel::Reservation.new(guest: name, start_date: start_res, end_date: end_res)
-    @reservation_list << new_reservation
+      # this method should add the newly created reservation to reservation_list
+      new_reservation = Hotel::Reservation.new(guest: name, start_date: start_res, end_date: end_res)
+      @reservation_list << new_reservation
     end
+
     # can see total cost of a reservation
+    def reservation_cost(res_name)
+      @reservation_list.each do |reservation|
+        if reservation.guest == res_name
+          res_cost = reservation.total_cost
+          # puts res_cost
+          return res_cost
+        elsif reservation.guest != res_name
+          return ' Sorry! We do not have your reservation on file. Please contact customer service.'
+        end
+      end
+    end
+
+
+
 
     def all_rooms
       rooms = []
