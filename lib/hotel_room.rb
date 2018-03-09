@@ -1,7 +1,7 @@
 # require 'pry'
 module Hotel
   class HotelRoom
-    attr_accessor :rm_number
+    attr_accessor :rm_number, :status
     attr_reader :cost_pr_day
     # need to refactor this so it is using hash ? make the data clearer
     def initialize(rm_number)

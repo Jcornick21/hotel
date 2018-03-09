@@ -43,9 +43,7 @@ describe 'Reservation class' do
 
   it "handles invalid start date and end_date" do
     proc {
-      reservation = Hotel::Reservation.new(
-        guest: 'Asrah', start_date: '9th October 2018', end_date: '6th October 2018'
-      )
+     Hotel::Reservation.new(guest: 'Asrah', start_date: '9th October 2018', end_date: '6th October 2018')
     }.must_raise StandardError
   end
 end
