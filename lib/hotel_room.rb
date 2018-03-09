@@ -3,15 +3,19 @@ module Hotel
   class HotelRoom
     attr_accessor :rm_number
     attr_reader :cost_pr_day
-
     # need to refactor this so it is using hash ? make the data clearer
-
     def initialize(rm_number)
       @rm_number = rm_number
       @cost_pr_day = 200
+      @status = nil
+    end
+
+    def change_status
+      @status = :UNAVAILABLE
     end
   end
 end
+
 
 
 

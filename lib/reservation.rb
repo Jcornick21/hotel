@@ -3,8 +3,8 @@ require 'date'
 # require_relative 'administrator'
 module Hotel
   class Reservation
-    attr_reader :guest, :room, :total_cost
-    attr_accessor :start_date, :end_date
+    attr_reader :guest, :total_cost
+    attr_accessor :start_date, :end_date, :room 
 
     def initialize(guest:, start_date:, end_date:)
       @guest = guest
@@ -32,7 +32,8 @@ module Hotel
       admin = Hotel::Administrator.new
       rm_units = admin.room_list
       (num_of_rooms).times do
-        reserved_units << rm_units.sample
+        resserved_unit = rm_units.sample
+        reserved_units << resserved_unit.change_status
       end
       return reserved_units
     end

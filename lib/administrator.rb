@@ -15,11 +15,36 @@ module Hotel
       end
     end
 
+    def available_rooms
+      rm_nums = []
+      reserved_rm_nums =
+      @room_list.each do |room|
+        rm_nums << room.rm_number
+      end
+
+      def reserved_rooms(res_list, new_res)
+        taken_rm = []
+        res_list.each do |reservation|
+          rm = reservation
+          if new_res.start_date == reservation.end_date
+            reservation.room.each do |unit|
+              unit.status = :AVAILABLE
+            end
+          end
+        end
+      end
+
+
+    end
+
     # can create reservation
     def new_reservation(name, start_res, end_res)
       # this method should add the newly created reservation to reservation_list
-      new_reservation = Hotel::Reservation.new(guest: name, start_date: start_res, end_date: end_res)
-      @reservation_list << new_reservation
+      new_res = Hotel::Reservation.new(guest: name, start_date: start_res, end_date: end_res)
+      reserved_rooms(@reservation_list, new_res)
+      booked_res = new_res.room
+
+      @reservation_list << booked_res.open_rooms
     end
 
     # can see total cost of a reservation
@@ -34,9 +59,6 @@ module Hotel
         end
       end
     end
-
-
-
 
     def all_rooms
       rooms = []
