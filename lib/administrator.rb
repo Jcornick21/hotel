@@ -21,34 +21,35 @@ module Hotel
         if room.status == nil || room.status == :AVAILABLE
           rm_nums << room.rm_number
         end
+        puts rm_nums
         return rm_nums
       end
     end
 
     def reserved_rooms(res_list, new_res)
-      if res_list == []
-        return
-      else
-        res_list.each do |reservation|
-          if new_res.start_date == reservation.end_date
-            reservation.room.each do |unit|
-              unit.status = :AVAILABLE
-            end
+      res_list.each do |reservation|
+        if new_res.start_date == reservation.end_date
+          reservation.room.each do |unit|
+            unit.status = :AVAILABLE
           end
         end
       end
     end
 
+
     # can create reservation
     def new_reservation(name, start_res, end_res)
       # this method should add the newly created reservation to reservation_list
+      while @reservation_list == []
+        new_res = Hotel::Reservation.new(guest: name, start_date: start_res, end_date: end_res)
+        @reservation_list << new_res
+      end
       new_res = Hotel::Reservation.new(guest: name, start_date: start_res, end_date: end_res)
-      available_rooms
       reserved_rooms(@reservation_list, new_res)
-      booked_res = new_res
-      @reservation_list << booked_res
-      available_rooms
+      @reservation_list << new_res
+      return new_res
     end
+
 
 
 

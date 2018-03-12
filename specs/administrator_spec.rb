@@ -31,6 +31,7 @@ describe 'Administrator class' do
     # this also checks the new_reservation method because if it didnt work
     #  the reservation list would be empty.
     admin = Hotel::Administrator.new
+    admin.new_reservation('Liam', '18th April 2018 ', '22nd April 2018')
     admin.new_reservation( 'Mikaila', '12th December 2018','18th December 2018')
 
     admin.reservation_list.sample.must_be_instance_of Hotel::Reservation
@@ -40,6 +41,9 @@ describe 'Administrator class' do
   it "can get total_cost" do
     admin = Hotel::Administrator.new
     admin.new_reservation( 'Mikaila', '12th December 2018','18th December 2018')
+    admin.new_reservation('Liam', '18th April 2018 ', '22nd April 2018')
+    admin.new_reservation('Miclah', '9th March 2018 ', '11th March 2018')
+
 
     name = 'Mikaila'
     name_1 = 'Mikah'
@@ -49,7 +53,14 @@ describe 'Administrator class' do
 
   end
 
-  # it "text" do
-  #
-  # end
+  it "can assign rervations with overlapping dates" do
+    admin = Hotel::Administrator.new
+    res_1 = admin.new_reservation('Liam', '18th April 2018 ', '22nd April 2018')
+    res_2 = admin.new_reservation( 'Mikaila', '12th December 2018','18th December 2018')
+    res_3 = admin.new_reservation('Miclah', '18th March 2018 ', '22nd March 2018')
+
+    admin.reservation_list.must_include res_2
+    admin.reservation_list.must_include res_3
+    admin.reservation_list.must_include res_1
+  end
 end
